@@ -1,20 +1,49 @@
-import React, { Component } from 'react';
-import logo from './logo.svg';
+import CreateTodo from './components/create-todo';
+import React, {Component} from 'react';
+import TodosList from './components/todos-list';
 import './App.css';
 
+const todos = [
+  {
+    task: 'Finish React Todo\'s App',
+    isCompleted: false
+  }, {
+    task: 'Learn React',
+    isCompleted: false
+  }, {
+    task: 'Sleep',
+    isCompleted: true
+  }
+];
+
 class App extends Component {
+  constructor(props) {
+    super(props);
+
+      this.state = {
+        todos
+      };
+  }
+
   render() {
     return (
       <div className="App">
-        <div className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h2>React Todo Application</h2>
-        </div>
-        <p className="App-intro">
-           <code>Hello World</code> 
-        </p>
+        <h1>React Todo's Application</h1>
+        <CreateTodo createTask={this.createTask.bind(this)} />
+        <TodosList 
+          todos={this.state.todos}
+          createTask={this.createTask.bind(this)}
+        />
       </div>
     );
+  }
+
+  createTask(task) {
+    this.state.todos.push({
+      task,
+      isCompleted: false
+    });
+    this.setState({ todos: this.state.todos });
   }
 }
 
