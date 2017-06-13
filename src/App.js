@@ -29,10 +29,9 @@ class App extends Component {
     return (
       <div className="App">
         <h1>React Todo's Application</h1>
-        <CreateTodo createTask={this.createTask.bind(this)} />
+        <CreateTodo createTask={this.createTask.bind(this)}  />
         <TodosList 
           todos={this.state.todos}
-          createTask={this.createTask.bind(this)}
         />
       </div>
     );

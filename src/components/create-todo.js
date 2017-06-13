@@ -4,16 +4,15 @@ export default class CreateTodo extends Component {
 
     render() {
         return (
-            <from onSubmit={this.handleCreate.bind(this)}>
+            <form onSubmit={this.handleCreate.bind(this)}>
                 <input type="text" placeholder="What do I need to do?" ref="createInput" />
                 <button>Create</button>
-            </from>
+            </form>
         )
     }
     handleCreate(event) {
-        // event.preventDefault();
-
-        console.log(this.refs.createInput)
+        event.preventDefault();
         this.props.createTask(this.refs.createInput.value);
+        this.refs.createInput.value = '';
     }
 }
